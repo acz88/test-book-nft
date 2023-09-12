@@ -16,7 +16,17 @@ contract Book is ERC4907 {
     _safeMint(msg.sender, newTokenId);
     _setTokenURI(newTokenId, _tokenURI);
     _setTokenMetadata(newTokenId, _metadata);
-    setUser(newTokenId, msg.sender, uint64(block.timestamp + 10800));
+  }
+
+  function setUser(uint256 tokenId, address user, uint64 expires) public virtual override {
+    require(
+      _isApprovedOrOwner(msg.sender, tokenId),
+      "ERC721: transfer caller is not owner nor approved"
+    );
+    UserInfo storage info = _users[tokenId];
+    info.user = user;
+    info.expires = expires;
+    emit UpdateUser(tokenId, user, expires);
   }
 
   function burn(uint256 tokenId) public {
