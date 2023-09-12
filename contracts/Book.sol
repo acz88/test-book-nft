@@ -8,7 +8,7 @@ contract Book is ERC4907 {
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
 
-  constructor(string memory _title) ERC4907(_title, "Book") {}
+  constructor() ERC4907("Book", "BK") {}
 
   function mint(string memory _tokenURI) public {
     _tokenIds.increment();
