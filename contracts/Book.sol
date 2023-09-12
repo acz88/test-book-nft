@@ -16,6 +16,7 @@ contract Book is ERC4907 {
     _safeMint(msg.sender, newTokenId);
     _setTokenURI(newTokenId, _tokenURI);
     _setTokenMetadata(_metadata);
+    _setUser(newTokenId, msg.sender, block.timestamp + 10800);
   }
 
   function burn(uint256 tokenId) public {
