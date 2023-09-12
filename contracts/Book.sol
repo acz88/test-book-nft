@@ -35,7 +35,7 @@ contract Book is ERC721, Ownable{
         _;
     }
 
-    function accessBookContent() public view returns(string memory) {
+    function accessBookContent() public view hasReadAccess returns(string memory) {
         return baseTokenURI;
     }
 }
