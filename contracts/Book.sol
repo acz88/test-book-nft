@@ -31,10 +31,11 @@ contract Book is ERC721, Ownable{
     /// @notice this checks access in this order: 1) if you are the owner, 2) if your access has expired. This might need some work, as if time expires I believe that the first condition will fail every time, and so if your loan ends instead of receiving the second message, you'll receive the first.
     modifier hasReadAccess() {
         require(msg.sender == tokenOwner, "You don't own this asset.");
-        require(block.timestamp < expiryDate, "Access expired. Please return to the interface to renew");
+        require(block.timestamp < expiryDate, "Access expired. Please return to the interface to renew.");
         _;
     }
 
+    /// @dev This gives access to the URI, so long as the address making the request has read access.
     function accessBookContent() public view hasReadAccess returns(string memory) {
         return baseTokenURI;
     }
