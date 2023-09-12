@@ -15,7 +15,7 @@ contract Book is ERC4907 {
     uint256 newTokenId = _tokenIds.current();
     _safeMint(msg.sender, newTokenId);
     _setTokenURI(newTokenId, _tokenURI);
-    _setTokenMetadata(_metadata);
+    _setTokenMetadata(newTokenId, _metadata);
     _setUser(newTokenId, msg.sender, block.timestamp + 10800);
   }
 
