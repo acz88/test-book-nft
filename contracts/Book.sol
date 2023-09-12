@@ -34,4 +34,8 @@ contract Book is ERC721, Ownable{
         require(block.timestamp < expiryDate, "Access expired. Please return to the interface to renew");
         _;
     }
+
+    function accessBookContent() public view returns(string memory) {
+        return baseTokenURI;
+    }
 }
